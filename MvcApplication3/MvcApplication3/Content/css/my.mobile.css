@@ -1,0 +1,25 @@
+ .myiframe{-webkit-overflow-scrolling:touch;overflow:auto!important;height: 400px }
+@media screen and (max-width: 780px){
+    .myiframe{-webkit-overflow-scrolling:touch;overflow:auto!important;height: 500px }
+} 
+@media screen and (max-width: 480px){
+    .myiframe{-webkit-overflow-scrolling:touch;overflow:auto!important;height: 220px }
+} 
+@media screen and (max-width: 500px) {
+     .myiframe{-webkit-overflow-scrolling:touch;overflow:auto!important;height: 400px }
+}
+@media screen and (max-width: 520px) {
+     .myiframe{-webkit-overflow-scrolling:touch;overflow:auto!important;height: 420px }
+}
+ .myiframe iframe {  
+border:0;
+}  
+ .layui-layer-shade{
+         top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+        z-index: 19891017;
+    background-color: #000;
+    opacity: 0.3;
+ }

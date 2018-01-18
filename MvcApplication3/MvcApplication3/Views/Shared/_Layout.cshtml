@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - ****</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <!-- ie浏览器刷新的时候需要添加，防止缓存 -->
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    @Styles.Render("~/Content/layui/css/layui.css")
+    @Styles.Render("~/Content/css/global.css")
+
+    @Scripts.Render("~/Content/layui/layui.js")
+    @Scripts.Render("~/Scripts/js/jquery-1.8.2.min.js")
+    @Scripts.Render("~/Content/datas/nav.js")
+    @Scripts.Render("~/Scripts/js/common.js")
+    @Scripts.Render("~/Scripts/js/navbar.js")
+    <script type="text/javascript">
+
+        //js获取根目录的方法
+        function getRootPath() {
+            var strFullPath = window.document.location.href;
+            var strPath = window.document.location.pathname;
+            var pos = strFullPath.indexOf(strPath);
+            var prePath = strFullPath.substring(0, pos);
+            var postPath = strPath.substring(0, strPath.substr(1).indexOf('/') + 1) + "/";
+            return (prePath + "/");
+        }
+
+
+        //屏蔽F5刷新
+        document.onkeydown = function (e) {
+            var ev = window.event || e;
+            var code = ev.keyCode || ev.which;
+            if (code == 116) {
+                ev.keyCode ? ev.keyCode = 0 : ev.which = 0;
+                cancelBubble = true;
+                return false;
+            }
+        }
+
+
+        //配置js目录
+        layui.config({
+            base: getRootPath() + 'Scripts/js/',
+            version: new Date().getTime()
+        })
+
+        layui.use('layer', function () {
+            var $ = layui.jquery,
+                layer = layui.layer;
+            //清除缓存
+            $.ajaxSetup({ cache: false });
+
+            //判断设备添加自定义css
+            var device = layui.device();
+            if (device.ios == true) {
+                var cssPath = getRootPath() + 'Content/css/my.mobile.css'
+                var link = document.createElement("link");
+                link.rel = "stylesheet";
+                link.type = "text/css";
+                link.href = url;
+                document.getElementsByTagName("head")[0].append(link);
+            }
+        });
+    </script>
+
+</head>
+<body>
+    @RenderBody()
+
+</body>
+</html>
